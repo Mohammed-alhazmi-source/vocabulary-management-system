@@ -52,7 +52,7 @@ export function closeConfirmDeleteWordFormDialog() {
   UI.confirmDeleteWordFormDialog.close();
 }
 
-export function messageDuringEmptyCards(msg = "Add Vocablaries And Happy") {
+export function messageDuringEmptyCards(msg = "No words yet. Add your first vocabulary!") {
   UI.vocabularyGrid.style.display = "flex";
   UI.vocabularyCardsGrid.style.margin = "auto";
   UI.vocabularyGrid.style.justifyContent = "center";
