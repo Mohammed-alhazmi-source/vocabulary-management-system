@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vocabulary Management</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+
+    <meta
+      name="description"
+      content="An interactive Vocabulary Management System designed to build, organize, and practice word lists efficiently with client-side state management."
+    />
+
+    <meta
+      name="keywords"
+      content="Vocabulary Management, Vocabulary App, Word Tracker, Flashcards, JavaScript Project, Learn Vocabulary, Mohammed Alhazmi"
+    />
+
+    <meta name="author" content="Mohammed Ahmed Ahmed Salah Alhazmi" />
+
+    <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Vocabulary Management System" />
+    <meta
+      property="og:description"
+      content="An interactive Vocabulary Management System designed to build, organize, and practice word lists efficiently with client-side state management."
+    />
+    <meta property="og:image" content="assets/images/vocabularyPreview.png" />
+    <meta property="og:url" content="https://YOUR-SITE-URL.netlify.app/" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Vocabulary Management System" />
+    <meta
+      name="twitter:description"
+      content="An interactive Vocabulary Management System designed to build, organize, and practice word lists efficiently with client-side state management."
+    />
+    <meta name="twitter:image" content="assets/images/vocabularyPreview.png" />
+
+    <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="assets/icons/favicon.svg" />
+
+    <script src="assets/js/modules/main.js" type="module"></script>
+  </head>
+  <body>
+    <!-- Brand Header  Vocabulary-App-->
+    <header class="site-header">
+      <div class="header-container">
+        <a href="#" class="brand-logo" id="brand-logo">
+          <span class="brand-w1">V</span>ocabulary-
+          <span class="brand-w2">S</span>ite
+        </a>
+        <button
+          type="button"
+          class="theme-toggle-btn"
+          id="theme-toggle-btn"
+          aria-label="Toggle theme"
+        >
+          <!-- Sun icon (shown in dark theme) -->
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <!-- Moon icon (shown in light theme) -->
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content Layout -->
+    <main class="main-content">
+      <!-- A. Page Heading -->
+      <section class="page-intro">
+        <h1 class="page-title">My Vocabulary</h1>
+        <p class="page-subtitle">
+          Collect words, images, and example sentences to master your language
+          skills.
+        </p>
+      </section>
+
+      <!-- B. Search and Add Controls Toolbar -->
+      <section class="toolbar-section">
+        <div class="toolbar-controls">
+          <div class="search-field-wrapper">
+            <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input
+              type="search"
+              id="search-input"
+              class="search-input"
+              placeholder="Search your vocabulary..."
+              aria-label="Search your vocabulary"
+            />
+          </div>
+          <button
+            type="button"
+            id="btn-add-word"
+            class="btn-add-circular"
+            aria-label="Add a new word"
+            title="Add a new word"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- C. Vocabulary Cards Grid (6 static sample cards) -->
+      <section
+        class="cards-grid-section"
+        aria-label="Vocabulary list"
+        id="vocabulary-cards-grid"
+      >
+        <div class="vocabulary-grid" id="vocabulary-grid">
+          <!-- <div class="fade-text">
+            Welcome In The Vocabulary Site, Begin Add Vocablaries And Happy
+          </div> -->
+        </div>
+        <button id="btn-load-more" class="btn-add-more-words">Load More</button>
+      </section>
+
+      <!-- D. Empty Vocabulary State -->
+      <section
+        class="empty-state-section"
+        aria-label="Empty vocabulary notification"
+        hidden
+      >
+        <div class="empty-state-card">
+          <div class="empty-icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path
+                d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
+              ></path>
+              <line x1="9" y1="7" x2="15" y2="7"></line>
+              <line x1="9" y1="11" x2="13" y2="11"></line>
+            </svg>
+          </div>
+          <h2 class="empty-title">Your vocabulary is empty</h2>
+          <p class="empty-description">
+            Start expanding your language journey by collecting your first word,
+            its context, and an inspiring image.
+          </p>
+          <button
+            type="button"
+            id="btn-empty-add-word"
+            class="btn-empty-add"
+            aria-label="Add your first word"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            Add Your First Word
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <!-- 5. Add / Edit Vocabulary Dialog -->
+    <dialog id="word-form-dialog" aria-labelledby="dialog-title">
+      <div class="modal-content-shell">
+        <!-- A. Dialog Header -->
+        <div class="modal-header">
+          <div class="modal-title-group">
+            <h2 id="word-form-dialog-title" class="modal-title">
+              Add New Word
+            </h2>
+            <p id="dialog-subtitle" class="modal-subtitle">
+              Save a new vocabulary entry with image context and example
+              sentences.
+            </p>
+          </div>
+          <button
+            type="button"
+            id="btn-close-form-dialog"
+            class="btn-modal-close"
+            aria-label="Close dialog"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Dialog Form Body -->
+        <form id="vocab-entry-form" method="dialog" class="modal-body">
+          <!-- B. Word Input -->
+          <div class="form-group">
+            <label for="word-input" class="form-label">
+              Word <span class="required-indicator" aria-hidden="true">*</span>
+            </label>
+            <input
+              type="text"
+              id="word-input"
+              name="word"
+              class="form-input-text"
+              placeholder="Enter a word..."
+              required
+              aria-required="true"
+            />
+            <span id="msg-error"></span>
+          </div>
+
+          <!-- C. Image Selection -->
+          <div class="form-group image-upload-wrapper">
+            <label for="word-image-input" class="form-label">Word image</label>
+
+            <!-- Hidden file input -->
+            <input
+              type="file"
+              id="word-image-input"
+              name="word_image"
+              accept="image/*"
+              class="file-input-hidden"
+            />
+
+            <!-- Dropzone / selection trigger -->
+            <label
+              for="word-image-input"
+              class="upload-dropzone"
+              id="upload-dropzone"
+            >
+              <svg class="upload-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="17 8 12 3 7 8"></polyline>
+                <line x1="12" y1="3" x2="12" y2="15"></line>
+              </svg>
+              <span class="upload-prompt-text"
+                >Choose an image or drop file here</span
+              >
+              <span class="upload-help-text"
+                >Select a JPG, PNG, or SVG from your device</span
+              >
+            </label>
+
+            <!-- Designated image preview area -->
+            <div class="image-preview-box" id="image-preview-container" hidden>
+              <img
+                id="preview-image"
+                src=""
+                alt="Selected word preview"
+                class="preview-img-element"
+              />
+              <button
+                type="button"
+                id="btn-remove-image"
+                class="btn-remove-image"
+                aria-label="Remove selected image"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+                Remove
+              </button>
+            </div>
+          </div>
+
+          <!-- D. Examples Section -->
+          <div class="form-group examples-management">
+            <label for="example-sentence-input" class="form-label"
+              >Example sentences</label
+            >
+
+            <div class="example-entry-field-wrap">
+              <input
+                type="text"
+                id="example-sentence-input"
+                name="example_input"
+                class="form-input-text"
+                placeholder="Write an example sentence..."
+              />
+              <span class="input-instruction-hint"
+                >Press Enter to add example sentence to list</span
+              >
+            </div>
+
+            <!-- Dedicated container for examples -->
+            <div class="examples-list-container" id="examples-list-container">
+              <p class="examples-empty-message" id="examples-empty-message">
+                No example sentences added yet.
+              </p>
+
+              <!-- Structural template for when examples exist-->
+            </div>
+          </div>
+        </form>
+
+        <!-- E. Dialog Footer -->
+        <div class="modal-footer">
+          <button
+            type="button"
+            id="btn-cancel-dialog"
+            class="btn-dialog btn-dialog-cancel"
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            form="vocab-entry-form"
+            id="btn-save-word"
+            class="btn-dialog btn-dialog-save"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- 6. View Word Details Dialog -->
+    <dialog id="word-details-dialog" aria-labelledby="details-word-heading">
+      <div class="modal-content-shell modal-content-details-dialog">
+        <div class="modal-header">
+          <!--class="modal-subtitle-->
+          <span class="modal-title" id="view-dialog-modal-subtitle"
+            >Vocabulary Word Details</span
+          >
+          <button
+            type="button"
+            id="btn-close-details-dialog"
+            class="btn-modal-close"
+            aria-label="Close details dialog"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
+        <div class="details-view-body">
+          <!-- Large image area with unique ID -->
+          <div class="details-image-area" id="details-image-container">
+            <img
+              id="view-dialog-image"
+              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='300' viewBox='0 0 600 300'><rect width='600' height='300' fill='%234f46e5'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-weight='700' font-size='28' fill='%23ffffff'>Serendipity</text></svg>"
+              alt="Full illustration for vocabulary word"
+            />
+          </div>
+
+          <!-- Prominent word heading with unique ID -->
+          <h2 id="view-dialog-word-heading" class="details-word-header">
+            Serendipity
+          </h2>
+
+          <!-- Examples section with unique ID -->
+
+          <div class="details-examples-section">
+            <h3 class="details-section-title">Example sentences</h3>
+
+            <ul class="details-examples-list" id="view-dialog-examples-list">
+              <!-- Examples -->
+            </ul>
+            <!-- Styled empty state for words without examples -->
+            <p
+              class="examples-empty-message"
+              id="view-dialog-no-examples-msg"
+              hidden
+            >
+              No example sentences recorded for this word.
+            </p>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button
+            type="button"
+            id="btn-close-details-footer"
+            class="btn-dialog btn-dialog-cancel"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- 7. Confirm Delete Vocabulary Dialog -->
+    <dialog
+      id="confirm-delete-word-form-dialog"
+      aria-labelledby="confirm-dialog"
+    >
+      <div class="modal-content-shell">
+        <!-- A. Dialog Header -->
+        <div class="modal-header">
+          <div class="modal-title-group">
+            <h2 id="confirm-dialog-title" class="modal-title">
+              Are You Sure Delete <span id="delete-word"></span> Word ?
+            </h2>
+          </div>
+          <button
+            type="button"
+            id="btn-close-form-confirm-dialog"
+            class="btn-modal-close"
+            aria-label="Close dialog"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
+        <!-- E. Dialog Footer -->
+        <div class="modal-footer">
+          <button
+            type="button"
+            id="btn-cancel-confirm-dialog"
+            class="btn-dialog btn-dialog-cancel"
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            form="vocab-entry-form"
+            id="btn-delete-word"
+            class="btn-dialog btn-dialog-save"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- 7. Footer -->
+    <footer class="site-footer">
+      <p class="copyright-text">
+        &copy; <span id="year">2026</span> Vocabulary-Site. All rights reserved.
+      </p>
+    </footer>
+  </body>
+</html>
