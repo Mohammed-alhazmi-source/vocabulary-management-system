@@ -12,7 +12,7 @@ An interactive, responsive web application designed to build, organize, and prac
 - **JavaScript** (DOM manipulation, modular architecture, asynchronous flows)
 
 ## 📌 Live Demo
-Check out the live project here: [Live Demo Link](https://YOUR-SITE-URL.netlify.app)
+Check out the live project here: [Live Demo Link](https://vocabulary-management-app.netlify.app/)
 
 ---
 Developed by **Mohammed Alhazmi**
